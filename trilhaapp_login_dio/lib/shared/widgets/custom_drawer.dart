@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:trilhaapp/pages/dados_cadastrais.dart';
+import 'package:trilhaapp/pages/login_page.dart';
 
 class CustomDrawer extends StatelessWidget {
   const CustomDrawer({super.key});
@@ -90,7 +91,7 @@ class CustomDrawer extends StatelessWidget {
                 width: double.infinity,
                 child: const Row(
                   children: [
-                    Icon(Icons.person, color: Colors.white),
+                    Icon(Icons.privacy_tip, color: Colors.white),
                     SizedBox(
                       width: 5,
                     ),
@@ -144,7 +145,7 @@ class CustomDrawer extends StatelessWidget {
                 child: const Row(
                   children: [
                     Icon(
-                      Icons.person,
+                      Icons.album,
                       color: Colors.white,
                     ),
                     SizedBox(
@@ -159,6 +160,67 @@ class CustomDrawer extends StatelessWidget {
             onTap: () => {},
           ),
           const Divider(color: Colors.white),
+          const SizedBox(
+            height: 10,
+          ),
+          InkWell(
+            child: Container(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                width: double.infinity,
+                child: const Row(
+                  children: [
+                    Icon(
+                      Icons.exit_to_app,
+                      color: Colors.white,
+                    ),
+                    SizedBox(
+                      width: 5,
+                    ),
+                    Text(
+                      "Sair",
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ],
+                )),
+            onTap: () => {
+              showDialog(
+                  context: context,
+                  builder: (BuildContext bc) {
+                    return AlertDialog(
+                      alignment: Alignment.centerLeft,
+                      elevation: 8,
+                      shape: const RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(10))),
+                      title: const Text(
+                        "Meu App",
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                      content: const Wrap(
+                        children: [
+                          Text("Você sairá do aplicativo!"),
+                          Text("Deseja realmente sair do Aplicativo?"),
+                        ],
+                      ),
+                      actions: [
+                        TextButton(
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                            child: const Text("Não")),
+                        TextButton(
+                            onPressed: () {
+                              Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => const LoginPage()));
+                            },
+                            child: const Text("Sim")),
+                      ],
+                    );
+                  })
+            },
+          ),
         ],
       ),
     );
