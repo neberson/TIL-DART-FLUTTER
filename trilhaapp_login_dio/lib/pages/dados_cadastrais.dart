@@ -101,7 +101,7 @@ class _DadosCadastraisPageState extends State<DadosCadastraisPage> {
                   value: pretensaoSalario,
                   min: 1000,
                   max: 10000,
-                  divisions: 1000,
+                  divisions: 9,
                   label: pretensaoSalario.toStringAsFixed(0),
                   onChanged: (value) {
                     setState(() {
