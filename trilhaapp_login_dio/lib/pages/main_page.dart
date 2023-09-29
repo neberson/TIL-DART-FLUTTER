@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:trilhaapp/pages/card_page.dart';
 import 'package:trilhaapp/pages/image_assets.dart';
-import 'package:trilhaapp/pages/pagina_3.dart';
+import 'package:trilhaapp/pages/list_view.dart';
 import 'package:trilhaapp/shared/widgets/custom_drawer.dart';
 
 class MainPage extends StatefulWidget {
@@ -32,7 +32,7 @@ class _MainPageState extends State<MainPage> {
                     posicaoPagina = value;
                   });
                 },
-                children: const [CardPage(), ImageAssetsPage(), Pagina3Page()],
+                children: const [CardPage(), ImageAssetsPage(), ListViewPage()],
               ),
             ),
             BottomNavigationBar(
