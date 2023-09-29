@@ -9,7 +9,6 @@ class CardDetailPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Hero(
       tag: cardDetail.id,
-      transitionOnUserGestures: true,
       child: SafeArea(
         child: Scaffold(
           //appBar: AppBar(),
