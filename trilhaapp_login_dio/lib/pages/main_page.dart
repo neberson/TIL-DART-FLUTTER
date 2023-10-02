@@ -3,6 +3,7 @@ import 'package:trilhaapp/pages/card_page.dart';
 import 'package:trilhaapp/pages/image_assets.dart';
 import 'package:trilhaapp/pages/list_view.dart';
 import 'package:trilhaapp/pages/list_view_horizontal_page.dart';
+import 'package:trilhaapp/pages/tarefa_page.dart';
 import 'package:trilhaapp/shared/widgets/custom_drawer.dart';
 
 class MainPage extends StatefulWidget {
@@ -33,7 +34,7 @@ class _MainPageState extends State<MainPage> {
                     posicaoPagina = value;
                   });
                 },
-                children: const [CardPage(), ImageAssetsPage(), ListViewPage(), ListViewHorizontalPage()],
+                children: const [CardPage(), ImageAssetsPage(), ListViewPage(), ListViewHorizontalPage(), TarefaPage()],
               ),
             ),
             BottomNavigationBar(
@@ -51,7 +52,9 @@ class _MainPageState extends State<MainPage> {
                   BottomNavigationBarItem(
                       icon: Icon(Icons.person), label: "Pag3"),
                   BottomNavigationBarItem(
-                      icon: Icon(Icons.list), label: "Pag4")
+                      icon: Icon(Icons.list), label: "Pag4"),
+                  BottomNavigationBarItem(
+                      icon: Icon(Icons.house), label: "Tarefas"),
                 ])
           ],
         ),
