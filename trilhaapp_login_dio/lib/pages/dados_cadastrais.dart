@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:trilhaapp/repositories/linguagem_repository.dart';
 import 'package:trilhaapp/repositories/nivel_repository.dart';
+import 'package:trilhaapp/service/app_storage.dart';
 import 'package:trilhaapp/shared/widgets/text_label.dart';
 
 class DadosCadastraisPage extends StatefulWidget {
@@ -17,9 +18,12 @@ class _DadosCadastraisPageState extends State<DadosCadastraisPage> {
   var niveis = [];
   var nivelSelecionado = "";
   var linguagens = [];
-  var linhagensSelecionadas = [];
+  List<String> linhagensSelecionadas = [];
   double pretensaoSalario = 1000;
   int tempoExperiencia = 1;
+
+  late AppStorageService storage;
+
   bool salvando = false;
 
   @override
@@ -27,6 +31,22 @@ class _DadosCadastraisPageState extends State<DadosCadastraisPage> {
     niveis = NivelRepository.retornaNiveis();
     linguagens = LinguagensRepository.retornaLinguagens();
     super.initState();
+    carregarDados();
+  }
+
+  void carregarDados() async {
+    storage = AppStorageService();
+    nomeController.text = await storage.getDadosCadastraisNome();
+    dataNascimentoController.text = await storage.getDadosDataNascimento();
+    if (dataNascimentoController.text.isNotEmpty) {
+      dataNascimento = DateTime.tryParse(dataNascimentoController.text);
+    }
+
+    nivelSelecionado = await storage.getDadosNivelExperiencia();
+    linhagensSelecionadas = await storage.getDadosLinguagensPreferidas();
+    tempoExperiencia = await storage.getDadosTempoExperiencia();
+    pretensaoSalario = await storage.getDadosPretensaoSalarial();
+    setState(() {});
   }
 
   List<DropdownMenuItem<int>> returnItens(int quantidade) {
@@ -131,7 +151,7 @@ class _DadosCadastraisPageState extends State<DadosCadastraisPage> {
                         }),
                     TextButton(
                       child: const Text("Salvar"),
-                      onPressed: () {
+                      onPressed: () async {
                         setState(() {
                           salvando = false;
                         });
@@ -173,6 +193,19 @@ class _DadosCadastraisPageState extends State<DadosCadastraisPage> {
                                   "Deve ter ao menos 1 ano de experiência em uma das linguagens!")));
                           return;
                         }
+
+                        await storage
+                            .setDadosCadastraisNome(nomeController.text);
+                        await storage.setDadosCadastraisDataNascimento(
+                            dataNascimento.toString());
+                        await storage.setDadosCadastraisNivelExperiencia(
+                            nivelSelecionado);
+                        await storage.setDadosCadastraisLinguagensPreferidas(
+                            linhagensSelecionadas);
+                        await storage.setDadosCadastraisTempoExperiencia(
+                            tempoExperiencia);
+                        await storage.setDadosCadastraisPretensaoSalarial(
+                            pretensaoSalario);
                         setState(() {
                           salvando = true;
                         });
