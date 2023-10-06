@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:trilhaapp/pages/configuracoes_page.dart';
+import 'package:trilhaapp/pages/configuracoes/configuracoes_hive_page.dart';
 import 'package:trilhaapp/pages/dados_cadastrais.dart';
 import 'package:trilhaapp/pages/login_page.dart';
-import 'package:trilhaapp/pages/numeros_aleatorios_page.dart';
+import 'package:trilhaapp/pages/numeros_aleatorios/numeros_aleatorios_hive_page.dart';
 
 class CustomDrawer extends StatelessWidget {
   const CustomDrawer({super.key});
@@ -164,7 +164,7 @@ class CustomDrawer extends StatelessWidget {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (bc) => const ConfiguracoesPage()));
+                      builder: (bc) => const ConfiguracoesHivePage()));
             },
           ),
           const Divider(color: Colors.white),
@@ -196,7 +196,7 @@ class CustomDrawer extends StatelessWidget {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (bc) => const NumerosAleatoriosPage()));
+                      builder: (bc) => const NumerosAleatoriosHivePage()));
             },
           ),
           const Divider(color: Colors.white),
