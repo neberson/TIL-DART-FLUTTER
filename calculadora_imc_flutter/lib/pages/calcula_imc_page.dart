@@ -1,3 +1,5 @@
+import 'package:calculadora_imc_flutter/model/imc_model.dart';
+import 'package:calculadora_imc_flutter/repositories/imc_repository.dart';
 import 'package:flutter/material.dart';
 
 class CalculadoraIMCApp extends StatelessWidget {
@@ -20,21 +22,37 @@ class CalculadoraIMC extends StatefulWidget {
 }
 
 class _CalculadoraIMCState extends State<CalculadoraIMC> {
+  IMCRepository imcRepository = IMCRepository();
   TextEditingController alturaController = TextEditingController();
   TextEditingController pesoController = TextEditingController();
-  List<String> results = [];
+  List<IMC> imcRegistrados = [];
 
-  void calculaIMC() {
-    double altura = double.parse(alturaController.text);
-    double peso = double.parse(pesoController.text);
-    double imc = peso / (altura * altura);
-    String result = 'IMC: ${imc.toStringAsFixed(2)}';
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _carregarImcRegistrados();
+  }
+
+  Future<void> _carregarImcRegistrados() async {
+    imcRegistrados = await imcRepository.obterIMCRegistrados();
+    setState(() {});
+  }
+
+  Future<void> salvarIMC() async {
+    var imcAtual = IMC(
+        id: 0,
+        altura: double.parse(alturaController.text),
+        peso: double.parse(pesoController.text));
+    imcAtual.calculaIMC();
+    await imcRepository.salvar(imcAtual);
+  }
+
+  void limparCampos() {
     setState(() {
-      debugPrint(result);
-      results.add(result);
       alturaController.clear();
       pesoController.clear();
-      debugPrint(results.length.toString());
+      alturaController.selection;
     });
   }
 
@@ -60,7 +78,11 @@ class _CalculadoraIMCState extends State<CalculadoraIMC> {
             ),
             const SizedBox(height: 20),
             ElevatedButton(
-              onPressed: calculaIMC,
+              onPressed: () async {
+                await salvarIMC();
+                limparCampos();
+                await _carregarImcRegistrados();
+              },
               child: const Text('Calcular IMC'),
             ),
             const SizedBox(height: 20),
@@ -70,10 +92,20 @@ class _CalculadoraIMCState extends State<CalculadoraIMC> {
             ),
             Expanded(
               child: ListView.builder(
-                itemCount: results.length,
+                itemCount: imcRegistrados.length,
                 itemBuilder: (context, index) {
                   return ListTile(
-                    title: Text(results[index]),
+                    title: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                            'Altura: ${imcRegistrados[index].altura.toStringAsFixed(2)}'),
+                        Text(
+                            'Peso: ${imcRegistrados[index].peso.toStringAsFixed(2)}'),
+                        Text(
+                            'IMC: ${imcRegistrados[index].imc!.toStringAsFixed(2)}'),
+                      ],
+                    ),
                   );
                 },
               ),
