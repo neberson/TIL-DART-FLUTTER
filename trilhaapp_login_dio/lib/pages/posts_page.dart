@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:trilhaapp/model/posts_model.dart';
 import 'package:trilhaapp/pages/comments_page.dart';
-import 'package:trilhaapp/repositories/posts_repository.dart';
+import 'package:trilhaapp/repositories/posts/impl/posts_dio_repository.dart';
+import 'package:trilhaapp/repositories/posts/posts_repository.dart';
 
 class PostsPage extends StatefulWidget {
   const PostsPage({super.key});
@@ -11,7 +12,7 @@ class PostsPage extends StatefulWidget {
 }
 
 class _PostsPageState extends State<PostsPage> {
-  var postRepository = PostsRepository();
+  PostsRespository postRepository = PostsDioRepository();
   List<PostsModel> postsModel = [];
   @override
   void initState() {
