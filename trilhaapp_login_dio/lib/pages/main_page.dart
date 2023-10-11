@@ -4,6 +4,7 @@ import 'package:trilhaapp/pages/image_assets.dart';
 import 'package:trilhaapp/pages/list_view.dart';
 import 'package:trilhaapp/pages/list_view_horizontal_page.dart';
 import 'package:trilhaapp/pages/tarefas/tarefa_sqlite_page.dart';
+import 'package:trilhaapp/pages/consulta_cep_page.dart';
 import 'package:trilhaapp/shared/widgets/custom_drawer.dart';
 
 class MainPage extends StatefulWidget {
@@ -35,6 +36,7 @@ class _MainPageState extends State<MainPage> {
                   });
                 },
                 children: const [
+                  ConsultaCepPage(),
                   CardPage(),
                   ImageAssetsPage(),
                   ListViewPage(),
@@ -52,6 +54,8 @@ class _MainPageState extends State<MainPage> {
                 },
                 currentIndex: posicaoPagina,
                 items: const [
+                  BottomNavigationBarItem(
+                      icon: Icon(Icons.get_app_rounded), label: "HTTP"),
                   BottomNavigationBarItem(
                       icon: Icon(Icons.home), label: "Pag1"),
                   BottomNavigationBarItem(icon: Icon(Icons.add), label: "Pag2"),
