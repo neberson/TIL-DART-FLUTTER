@@ -5,6 +5,7 @@ import 'package:trilhaapp/pages/dados_cadastrais/dados_cadastrais_hive.dart';
 import 'package:trilhaapp/pages/login_page.dart';
 import 'package:trilhaapp/pages/numeros_aleatorios/numeros_aleatorios_hive_page.dart';
 import 'package:trilhaapp/pages/posts_page.dart';
+import 'package:trilhaapp/pages/tarefas/tarefa_http_page.dart';
 
 class CustomDrawer extends StatelessWidget {
   const CustomDrawer({super.key});
@@ -13,7 +14,7 @@ class CustomDrawer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Drawer(
       backgroundColor: const Color.fromARGB(255, 135, 67, 186),
-      child: Column(
+      child: ListView(
         children: [
           InkWell(
             onTap: () {
@@ -253,6 +254,33 @@ class CustomDrawer extends StatelessWidget {
               Navigator.pop(context);
               Navigator.push(context,
                   MaterialPageRoute(builder: (bc) => const CharactersPage()));
+            },
+          ),
+          const Divider(color: Colors.white),
+          InkWell(
+            child: Container(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                width: double.infinity,
+                child: const Row(
+                  children: [
+                    Icon(
+                      Icons.post_add,
+                      color: Colors.white,
+                    ),
+                    SizedBox(
+                      width: 5,
+                    ),
+                    Text(
+                      "Tarefas HTTP",
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ],
+                )),
+            onTap: () async {
+              Navigator.pop(context);
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (bc) => const TarefaHttpPage()));
             },
           ),
           const Divider(color: Colors.white),
