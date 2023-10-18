@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:trilhaapp/pages/Characters/characters_page.dart';
+import 'package:trilhaapp/pages/brasil_fields/brasil_fields_page.dart';
 import 'package:trilhaapp/pages/configuracoes/configuracoes_hive_page.dart';
 import 'package:trilhaapp/pages/dados_cadastrais/dados_cadastrais_hive.dart';
 import 'package:trilhaapp/pages/login_page.dart';
@@ -281,6 +283,65 @@ class CustomDrawer extends StatelessWidget {
               Navigator.pop(context);
               Navigator.push(context,
                   MaterialPageRoute(builder: (bc) => const TarefaHttpPage()));
+            },
+          ),
+          const Divider(color: Colors.white),
+          InkWell(
+            child: Container(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                width: double.infinity,
+                child: const Row(
+                  children: [
+                    Icon(
+                      Icons.post_add,
+                      color: Colors.white,
+                    ),
+                    SizedBox(
+                      width: 5,
+                    ),
+                    Text(
+                      "Brasil Fields",
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ],
+                )),
+            onTap: () async {
+              Navigator.pop(context);
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (bc) => const BrasilFieldsPage()));
+            },
+          ),
+          const Divider(color: Colors.white),
+          InkWell(
+            child: Container(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                width: double.infinity,
+                child: const Row(
+                  children: [
+                    Icon(
+                      Icons.home,
+                      color: Colors.white,
+                    ),
+                    SizedBox(
+                      width: 5,
+                    ),
+                    Text(
+                      "Intl",
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ],
+                )),
+            onTap: () {
+              var f = NumberFormat('#,###.0#', 'en_US');
+              var fBR = NumberFormat('#,###.0#', 'pt_BR');
+
+              print(f.format(12345.345));
+              print(fBR.format(12345.345));
+
+              var data = DateTime(2022, 05, 09);
+              print(DateFormat('EEEEE', 'en_US').format(data));
             },
           ),
           const Divider(color: Colors.white),
