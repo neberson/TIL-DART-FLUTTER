@@ -47,6 +47,9 @@ dependencies:
   convert: ^3.1.1
   brasil_fields: ^1.14.0
   intl: ^0.18.1
+  qr_code_scanner: ^1.0.1
+  image_picker: ^1.0.4
+  gallery_saver_updated: ^3.0.0
 
 dev_dependencies:
   flutter_test:

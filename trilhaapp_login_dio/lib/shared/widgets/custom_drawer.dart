@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:trilhaapp/pages/Characters/characters_page.dart';
 import 'package:trilhaapp/pages/brasil_fields/brasil_fields_page.dart';
+import 'package:trilhaapp/pages/camera/camera_page.dart';
 import 'package:trilhaapp/pages/configuracoes/configuracoes_hive_page.dart';
 import 'package:trilhaapp/pages/dados_cadastrais/dados_cadastrais_hive.dart';
 import 'package:trilhaapp/pages/login_page.dart';
 import 'package:trilhaapp/pages/numeros_aleatorios/numeros_aleatorios_hive_page.dart';
 import 'package:trilhaapp/pages/posts_page.dart';
+import 'package:trilhaapp/pages/qr_code/qr_code_page.dart';
 import 'package:trilhaapp/pages/tarefas/tarefa_http_page.dart';
 
 class CustomDrawer extends StatelessWidget {
@@ -141,9 +143,6 @@ class CustomDrawer extends StatelessWidget {
             },
           ),
           const Divider(color: Colors.white),
-          const SizedBox(
-            height: 10,
-          ),
           InkWell(
             child: Container(
                 padding:
@@ -173,9 +172,6 @@ class CustomDrawer extends StatelessWidget {
             },
           ),
           const Divider(color: Colors.white),
-          const SizedBox(
-            height: 10,
-          ),
           InkWell(
             child: Container(
                 padding:
@@ -310,6 +306,60 @@ class CustomDrawer extends StatelessWidget {
               Navigator.pop(context);
               Navigator.push(context,
                   MaterialPageRoute(builder: (bc) => const BrasilFieldsPage()));
+            },
+          ),
+          const Divider(color: Colors.white),
+          InkWell(
+            child: Container(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                width: double.infinity,
+                child: const Row(
+                  children: [
+                    Icon(
+                      Icons.qr_code,
+                      color: Colors.white,
+                    ),
+                    SizedBox(
+                      width: 5,
+                    ),
+                    Text(
+                      "Qr Code",
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ],
+                )),
+            onTap: () async {
+              Navigator.pop(context);
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (bc) => const QrCodePage()));
+            },
+          ),
+          const Divider(color: Colors.white),
+          InkWell(
+            child: Container(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                width: double.infinity,
+                child: const Row(
+                  children: [
+                    Icon(
+                      Icons.camera,
+                      color: Colors.white,
+                    ),
+                    SizedBox(
+                      width: 5,
+                    ),
+                    Text(
+                      "Camera",
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ],
+                )),
+            onTap: () async {
+              Navigator.pop(context);
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (bc) => const CameraPage()));
             },
           ),
           const Divider(color: Colors.white),
